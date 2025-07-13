@@ -3,7 +3,7 @@ import React, { use } from "react";
 function fetchUsers(): Promise<any[]> {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      fetch("https://jsonplaceholder.typicode.com/users123")
+      fetch("https://jsonplaceholder.typicode.com/users")
         .then(res => {
           if (!res.ok) reject(new Error("Network error"));
           else res.json().then(resolve).catch(reject);
