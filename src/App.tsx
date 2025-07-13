@@ -1,16 +1,16 @@
-import { MessageComponent } from "./components/MessageComponent";
-
-const fetchUsers = async () => {
-  const response = await fetch("https://jsonplaceholder.typicode.com/users");
-  if (!response.ok) throw new Error("Network error");
-  return response.json();
-};
+import {MessageComponent, fetchUsers} from "./components/MessageComponent";
+import ErrorBoundary from "./components/ErrorBoundary";
+import {Suspense} from "react";
 
 const App = () => {
   return (
     <div className="container">
-      <h1 className="text-center my-5">MessageComponent App</h1>
-      <MessageComponent promise={fetchUsers()} />
+      <h1 className="text-center my-5">Message Component App</h1>
+      <ErrorBoundary>
+        <Suspense fallback={<div>Loading...</div>}>
+          <MessageComponent promise={fetchUsers()} />
+        </Suspense>
+      </ErrorBoundary>
     </div>
   );
 };
